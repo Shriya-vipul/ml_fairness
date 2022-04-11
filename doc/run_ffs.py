@@ -30,12 +30,14 @@ juv_cond = (compas['juv_fel_count'] > 0) | (compas['juv_misd_count'] > 0) | (com
 compas['has_juv'] = np.where(juv_cond, 1, 0)
 compas['has_prior'] = np.where(compas['priors_count'] > 0, 1, 0)
 
-X = compas[['age', 'c_charge_degree', 'sex', 'priors_count', 'length_of_stay', 
-            'has_juv', 'has_prior']] # 7 features
+X = compas[['age', 'c_charge_degree', 'sex', 'length_of_stay', 
+            'has_juv', 'has_prior']] # 6 features
 y = compas['two_year_recid']
 protected = compas['race']
 
 # get shapley scores
+
+print("Features:", X.columns)
 
 print("Computing Shapley Scores..........")
 ffs_df = compute_shapley(X.to_numpy(),

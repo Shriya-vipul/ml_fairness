@@ -21,7 +21,7 @@ Term: Spring 2022
 + Zhang Xile: Model selection, LM/LPS research, LM/LPS coding/development, evaluation metrics, data visualization, presentation
 + Zheng, Haozhong: Model selection, LM/LPS research, LM/LPS coding/development, evaluation metrics, presentation, LM/LPS presentation diagrams 
 
-Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
+Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is organized as follows.
 
 ```
 proj/

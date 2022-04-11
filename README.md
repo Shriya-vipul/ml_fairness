@@ -12,7 +12,7 @@ Term: Spring 2022
 	+ Tang, Kexin
 	+ Zhang, Xile
 	+ Zheng, Haozhong
-+ Project summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: In this project, we researched Machine Learning bias correction algorithms Conditional Discrimination as well as Fairness-aware Feature Selection. We implemented, evaluated, and compared LM, LPS, and FFS. Implementation and evaluation will be based on the COMPAS dataset, which contains the defendants' recidivsim risk score (COMPAS), race, gender, age, criminal history, prison time, etc. Our goal is to compare the performance and efficiency of the above algorithms for Machine Learning Fairness.
 	
 **Contribution statement**:
 + Du, Christie: Feature engineering, model selection, hyperparameter tuning, FFS research, FFS coding/development, evaluation metrics, data visualization, presentation

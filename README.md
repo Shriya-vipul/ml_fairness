@@ -16,10 +16,8 @@ Term: Spring 2022
 
 ### [Algorithm](doc/):
 + #### [A6: LM,LPS](doc/LM%2BLPS_model.ipynb)
-	![screenshot](figs/LM_LPS.png)
-	
+
 + #### [A7: FFS](doc/FFS.ipynb)
-	![screenshot](figs/FFS.png)
 	
 **Contribution statement**:
 + Du, Christie: Project Leader, feature engineering, model selection, hyperparameter tuning, FFS research, FFS coding/development, evaluation metrics, data visualization, presentation

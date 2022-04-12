@@ -140,34 +140,34 @@ def comp_dep(left, right):
     
     #start = time.time()
 
-    num_rows = left.shape[0]
+    num_left_rows = left.shape[0]
     num_left_cols = left.shape[1]
         
-    concat_arr = np.concatenate((left, right), axis=1)
-    concat_unique = unique_per_col(concat_arr)
+    merged = np.concatenate((left, right), axis=1)
+    merged_unique = unique_per_col(merged)
 
-    concat_cart = list(product(*concat_unique))
+    merged_cartesian = list(product(*merged_unique))
     p_total = 0
-    for vec in concat_cart:
-        p_r1_r2 = len(np.where((concat_arr == vec).all(axis=1))[0]) / num_rows
+    for pair in merged_cartesian:
+        prob_r1_r2 = len(np.where((merged == pair).all(axis=1))[0]) / num_left_rows
         
-        if p_r1_r2 == 0:
+        if prob_r1_r2 == 0:
             p_event = 0
         else:
-            p_r1 = len(np.where((left == vec[:num_left_cols]).all(axis=1))[0]) / num_rows
-            if p_r1 == 0:
+            prob_r1 = len(np.where((left == pair[:num_left_cols]).all(axis=1))[0]) / num_left_rows
+            if prob_r1 == 0:
                 p_event = 0
             else:
-                p_r2 = len(np.where((right == vec[num_left_cols:]).all(axis=1))[0]) / num_rows
+                prob_r2 = len(np.where((right == pair[num_left_cols:]).all(axis=1))[0]) / num_left_rows
                 
-                if p_r2 == 0:
+                if prob_r2 == 0:
                     p_event = 0
                 else:
-                    p_event = p_r1_r2 * np.log(p_r1_r2 / p_r1) / p_r1
+                    p_event = prob_r1_r2 * np.log(prob_r1_r2 / prob_r1) / prob_r1
 
         p_total += np.abs(p_event)
         
-    #print("dep:", (time.time() - start) / len(concat_cart))
+    #print("dep:", (time.time() - start) / len(merged_cartesian))
     return p_total
 
 
@@ -175,50 +175,50 @@ def comp_cond_dep(left, right, conditional):
 
     #start = time.time()
     
-    num_rows = left.shape[0]
+    num_left_rows = left.shape[0]
     num_left_cols = left.shape[1]
     num_right_cols = right.shape[1]
 
-    concat_arr = np.concatenate((left, right, conditional), axis=1)    
-    concat_unique = unique_per_col(concat_arr)
-    concat_cart = list(product(*concat_unique))
+    merged = np.concatenate((left, right, conditional), axis=1)    
+    merged_unique = unique_per_col(merged)
+    merged_cartesian = list(product(*merged_unique))
     p_total = 0
 
-    for vec in concat_cart:
+    for pair in merged_cartesian:
         
-        p_r1_r2 = len(np.where((concat_arr == vec).all(axis=1))[0]) / num_rows
-        if p_r1_r2 == 0:
+        prob_r1_r2 = len(np.where((merged == pair).all(axis=1))[0]) / num_left_rows
+        if prob_r1_r2 == 0:
             p_event = 0
         else:
-            p_r1 = len(np.where((left == vec[:num_left_cols]).all(axis=1))[0]) / num_rows
-            if p_r1 == 0:
+            prob_r1 = len(np.where((left == pair[:num_left_cols]).all(axis=1))[0]) / num_left_rows
+            if prob_r1 == 0:
                 p_event = 0
             else:
-                num = len(np.where((concat_arr[:, num_left_cols: -num_right_cols] == 
-                            vec[num_left_cols: -num_right_cols]).all(axis=1))[0])
-                p_r2 = num / num_rows
-                if p_r2 == 0:
+                num = len(np.where((merged[:, num_left_cols: -num_right_cols] == 
+                            pair[num_left_cols: -num_right_cols]).all(axis=1))[0])
+                prob_r2 = num / num_left_rows
+                if prob_r2 == 0:
                     p_event = 0
                 else:
-                    denom = len(np.where((concat_arr[:, -num_right_cols:] == 
-                                          vec[-num_right_cols:]).all(axis=1))[0])
+                    denom = len(np.where((merged[:, -num_right_cols:] == 
+                                          pair[-num_right_cols:]).all(axis=1))[0])
                     if denom != 0:
                         
-                        cond1 = (concat_arr[:, :num_left_cols] == vec[:num_left_cols]).all(axis=1)
-                        cond2 = (concat_arr[:, -num_right_cols:] == vec[-num_right_cols:]).all(axis=1)
-                        p_r1_given_r3 = len(np.where(cond1 & cond2)[0]) / denom
+                        cond1 = (merged[:, :num_left_cols] == pair[:num_left_cols]).all(axis=1)
+                        cond2 = (merged[:, -num_right_cols:] == pair[-num_right_cols:]).all(axis=1)
+                        prob_r1_given_r3 = len(np.where(cond1 & cond2)[0]) / denom
                     
                     else:
-                        p_r1_given_r3 = 0
+                        prob_r1_given_r3 = 0
                         
-                    if p_r1_given_r3 == 0:
+                    if prob_r1_given_r3 == 0:
                         p_event = 0
                     else:
-                        p_event = p_r1_r2 * np.log(p_r1_r2 / p_r2) / p_r1_given_r3
+                        p_event = prob_r1_r2 * np.log(prob_r1_r2 / prob_r2) / prob_r1_given_r3
         
         p_total += np.abs(p_event)
 
-    #print("cond_dep", (time.time() - start) / len(concat_cart))
+    #print("cond_dep", (time.time() - start) / len(merged_cartesian))
     return p_total
 
 

@@ -21,7 +21,7 @@ Term: Spring 2022
 	
 **Contribution statement**:
 + Du, Christie: Project Leader, feature engineering, model selection, hyperparameter tuning, FFS research, FFS coding/development, evaluation metrics, data visualization, presentation
-+ Nallamaddi, Shriya: FFS research, presentation
++ Nallamaddi, Shriya: FFS research, presentation, FFS coding/development, evaluation metrics, data visualization
 + Tang, Kexin: Feature engineering, data cleaning, data processing, FFS research, presentation
 + Zhang Xile: Model selection, LM/LPS research, LM coding/development, LM/LPS evaluation metrics, data visualization, presentation
 + Zheng, Haozhong: LM/LPS research, LPS coding/development, algorithm diagram, presentation
